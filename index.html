@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Correlation Coefficient Calculator</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <h4 class="text-center my-3">Correlation Coefficient Calculator</h4>
+
+    <div class="row justify-content-center">
+        <div class="col-9">
+            <p><a href="https://en.wikipedia.org/wiki/Correlation_coefficient" target="_blank" class="font-weight-bold" title="Learn more">Correlation coefficient</a>
+                is a numerical measure of some type of correlation, meaning a statistical relationship between two variables.</p>
+            <p>
+                <a href="https://www.investopedia.com/terms/c/correlationcoefficient.asp" target="_blank" class="font-weight-bold" title="Learn more">Correlation statistics</a>
+                can be used in finance and investing. For example, a correlation coefficient could be calculated to determine
+                the level of correlation between the price of crude oil and the stock price of an oil-producing company,
+                such as Exxon Mobil Corporation.
+            </p>
+            <p class="small text-center">
+                This site is using the <a href="https://github.com/kaydansky/correlation-coefficient" target="_blank" title="View on Github">Correlation Coefficient Calculation PHP Library</a>
+                <a href="https://github.com/kaydansky/correlation-coefficient" target="_blank" title="View on Github"><img src="assets/images/GitHub_Logo.png" class="mb-1" width="50" alt="View on Github"></a>
+            </p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-9">
+            <div class="card">
+                <div class="card-body p-2 bg-light">
+                    <form id="form1">
+                        <table class="table table-bordered">
+                            <tr class="bg-light">
+                                <th>Variables to measure how strong a relationship is between</th>
+                                <th>Data size (2 &ndash; 50)</th>
+                                <th>Type</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" id="x_name" name="x_name" value="Age" class="form-control"
+                                           onfocus="if(this.value==='Age')this.value='';"
+                                           onblur="if(this.value==='')this.value='Age';"/></td>
+                                <td rowspan="2" class="align-middle">
+                                    <input type="number" min="2" max="50" maxlength="2" id="size" value="6" class="form-control"
+                                           onfocus="if(this.value==='6')this.value='';"
+                                           onblur="if(this.value==='')this.value='6';"/></td>
+                                <td rowspan="2" class="align-middle">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="pearson" name="coeff_type" value="pearson" checked class="custom-control-input">
+                                        <label class="custom-control-label" for="pearson">Pearson</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="spearman" name="coeff_type" value="spearman" class="custom-control-input">
+                                        <label class="custom-control-label" for="spearman">Spearman</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" id="y_name" name="y_name" value="Glucose Level" class="form-control"
+                                           onfocus="if(this.value==='Glucose Level')this.value='';"
+                                           onblur="if(this.value==='')this.value='Glucose Level';"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="text-center">
+                            <button id="submit1" class="btn btn-info" type="button">Populate with data</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="chart_container" class="row justify-content-center d-none mb-2">
+        <div class="col-8 text-center">
+            <div id="coefficient" class="h5"></div>
+            <div id="chart_div"></div>
+        </div>
+    </div>
+
+    <div id="d1" class="d-none row justify-content-center mb-5">
+        <div class="col-4 text-center">
+            <form id="form2">
+                <input type="hidden" name="x_name">
+                <input type="hidden" name="y_name">
+                <table id="dataSet" class="table table-bordered">
+                    <tr class="bg-light">
+                        <th></th>
+                        <th id="xName"></th>
+                        <th id="yName"></th>
+                    </tr>
+                </table>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="pearson2" name="c_type" value="pearson" class="custom-control-input">
+                            <label class="custom-control-label" for="pearson2">Pearson</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="spearman2" name="c_type" value="spearman" class="custom-control-input">
+                            <label class="custom-control-label" for="spearman2">Spearman</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <button class="btn btn-outline-secondary reset mr-1" type="reset">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    $('#submit1').click(function () {
+        $('.data_temp').remove();
+
+        let x_name = $('#x_name').val();
+        let y_name = $('#y_name').val();
+        let size = $('#size').val();
+        let i;
+
+        for (i = 1; i <= size; i++) {
+            let rand1 = Math.floor(Math.random() * 100 + 1);
+            let rand2 = Math.floor(Math.random() * 100 + 1);
+
+            $('<tr class="data_temp"><td class="align-middle">'+ i +
+                '</td><td><input type="number" name="vx[]" step="0.01" size="5" value="'+rand1+'" class="form-control" ' +
+                'onfocus="if(this.value===\''+rand1+'\')this.value=\'\';" onblur="if(this.value===\'\')this.value=\''+rand1+'\';"></td>' +
+                '<td><input type="number" name="vy[]"  step="0.01" size="5" value="'+rand2+'" class="form-control" ' +
+                'onfocus="if(this.value===\''+rand2+'\')this.value=\'\';" onblur="if(this.value===\'\')this.value=\''+rand2+'\';" /></td></tr>')
+                .appendTo('#dataSet');
+        }
+
+        $('#submit1').hide();
+        $('#chart_container').hide();
+        $('#xName').text(x_name);
+        $('#yName').text(y_name);
+        $(':input[name="x_name"]').val(x_name);
+        $(':input[name="y_name"]').val(y_name);
+        $('#d1').removeClass('d-none').show();
+        $('html, body').animate({scrollTop:$(document).height()}, 'slow');
+
+        if ($(':input[name="coeff_type"]:checked').val() === 'pearson') {
+            $('#pearson2').prop('checked', true);
+        } else {
+            $('#spearman2').prop('checked', true);
+        }
+    });
+
+    $(':input[type="number"]').on('input', function () {
+        let value = $(this).val();
+
+        if ((value !== '') && (value.indexOf('.') === -1)) {
+            $(this).val(Math.max(Math.min(value, 50), -50));
+        }
+    });
+
+    $('.reset').click(function () {
+        location.reload();
+        return false;
+    });
+
+    $('.cancel').click(function () {
+        $('.data_temp').remove();
+        $('#d1').hide();
+        $('#submit1').show();
+        $('html, body').animate({scrollTop: 0}, 'slow');
+    });
+
+    $('#form2').submit(function (e) {
+        e.preventDefault();
+
+        const ancTag = $('#chart_container');
+        const respCont = $('#coefficient');
+        let i;
+        let a = [];
+        let values_x = $("input[name^='vx']").map(function(){return $(this).val();}).get();
+        let values_y = $("input[name^='vy']").map(function(){return $(this).val();}).get();
+        a.push(['', $("input[name^='x_name']").val(), $("input[name^='y_name']").val()]);
+
+        $.ajax({
+            type: "POST",
+            url: 'coefficient.php',
+            data: $(this).serialize(),
+            dataType: 'json'
+        }).done(function(data) {
+            if (data.error) {
+                respCont.html('<p class="mark bg-danger text-white">Error occurred: ' + data.error + '</p>');
+            } else {
+                respCont.html('<span class="mark font-weight-bold text-light bg-dark">' + data.type
+                    + '</span> coefficient: <span class="mark font-weight-bold text-light bg-dark">'
+                    + data.coefficient.toFixed(4) + ' (' + data.percentage + '%)</span>');
+            }
+        }).fail(function() {
+            respCont.html('<span class="mark bg-danger text-white">Server request failed</span>');
+        });
+
+        for (i = 0; i < values_x.length; i++) {
+            a.push([i + 1, parseFloat(values_x[i]), parseFloat(values_y[i])]);
+        }
+
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            const data = google.visualization.arrayToDataTable(a);
+
+            const options = {
+                title: '',
+                hAxis: {title: '', titleTextStyle: {color: '#333'}},
+                vAxis: {minValue: 0},
+                legend: {position: 'top'},
+                lineWidth: 3
+            };
+
+            let chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+
+        ancTag.removeClass('d-none').show();
+        $('#submit1').show();
+        $('html, body').animate({scrollTop: ancTag.offset().top}, 'slow');
+    });
+</script>
+</html>

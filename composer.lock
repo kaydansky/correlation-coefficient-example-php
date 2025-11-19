@@ -1,0 +1,52 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "14b5ad3469afa2cdc91c2804beee920c",
+    "packages": [
+        {
+            "name": "kaydansky/correlation-coefficient",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "C:/wamp64/www/CorrelationCoefficient",
+                "reference": "8db4ebbe0b723c69e0c11e73fc5d08da068758b4"
+            },
+            "require": {
+                "php": ">=7.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Correlation\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Kaydansky",
+                    "email": "kaydansky@gmail.com"
+                }
+            ],
+            "description": "A numerical measure of some type of correlation, meaning a statistical relationship between two variables.",
+            "time": "2020-01-20T13:11:30+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "kaydansky/correlation-coefficient": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.4.0",
+        "ext-json": "*"
+    },
+    "platform-dev": []
+}

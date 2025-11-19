@@ -1,0 +1,33 @@
+[
+    {
+        "name": "kaydansky/correlation-coefficient",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "C:/wamp64/www/CorrelationCoefficient",
+            "reference": "8db4ebbe0b723c69e0c11e73fc5d08da068758b4"
+        },
+        "require": {
+            "php": ">=7.4.0"
+        },
+        "time": "2020-01-20T13:11:30+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Correlation\\": "src/"
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Alexander Kaydansky",
+                "email": "kaydansky@gmail.com"
+            }
+        ],
+        "description": "A numerical measure of some type of correlation, meaning a statistical relationship between two variables."
+    }
+]

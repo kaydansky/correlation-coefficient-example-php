@@ -1,0 +1,28 @@
+{
+  "name": "kaydansky/correlation-example",
+  "description": "Use of the Correlation Coefficient library example",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Alexander Kaydansky",
+      "email": "kaydansky@gmail.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "C:/wamp64/www/CorrelationCoefficient"
+    }
+  ],
+  "require": {
+    "php": ">=7.4.0",
+    "kaydansky/correlation-coefficient": "dev-master",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Example\\": "src/"
+    }
+  }
+}
