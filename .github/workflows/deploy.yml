@@ -24,14 +24,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup base path for dev
-        if: github.ref == 'refs/heads/dev'
-        run: |
-          REPO_NAME="correlation-coefficient-example-php"
-          echo "<base href=\"/${REPO_NAME}/dev/\">" > base.html
-          sed -i '1i<base href="\/'"${REPO_NAME}"'/dev\/">' index.html || true
-          find . -name "*.html" -not -name "index.html" -exec sed -i '1i<base href="\/'"${REPO_NAME}"'/dev\/">' {} \; || true
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
