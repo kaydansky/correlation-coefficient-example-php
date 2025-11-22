@@ -8,7 +8,7 @@
 use Correlation\Correlation;
 use Correlation\Exception\CorrelationException;
 
-include 'vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 $correlation = new Correlation();
 

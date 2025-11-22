@@ -9,15 +9,10 @@
       "email": "kaydansky@gmail.com"
     }
   ],
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "C:/wamp64/www/CorrelationCoefficient"
-    }
-  ],
+
   "require": {
     "php": ">=7.4.0",
-    "kaydansky/correlation-coefficient": "dev-master",
+    "kaydansky/correlation-coefficient": "*",
     "ext-json": "*"
   },
   "autoload": {

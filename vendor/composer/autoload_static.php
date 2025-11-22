@@ -7,25 +7,29 @@ namespace Composer\Autoload;
 class ComposerStaticInitc5eb0a55c7cf61307f12d9ba58b33d28
 {
     public static $prefixLengthsPsr4 = array (
-        'E' => 
+        'E' =>
         array (
             'Example\\' => 8,
         ),
-        'C' => 
+        'C' =>
         array (
             'Correlation\\' => 12,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Example\\' => 
+        'Example\\' =>
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
-        'Correlation\\' => 
+        'Correlation\\' =>
         array (
             0 => __DIR__ . '/..' . '/kaydansky/correlation-coefficient/src',
         ),
+    );
+
+    public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -33,6 +37,7 @@ class ComposerStaticInitc5eb0a55c7cf61307f12d9ba58b33d28
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitc5eb0a55c7cf61307f12d9ba58b33d28::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitc5eb0a55c7cf61307f12d9ba58b33d28::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitc5eb0a55c7cf61307f12d9ba58b33d28::$classMap;
 
         }, null, ClassLoader::class);
     }

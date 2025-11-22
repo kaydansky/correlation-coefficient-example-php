@@ -4,15 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "14b5ad3469afa2cdc91c2804beee920c",
+    "content-hash": "929085fc0db99a75ad858909798ef324",
     "packages": [
         {
             "name": "kaydansky/correlation-coefficient",
-            "version": "dev-master",
+            "version": "v1.0",
             "source": {
                 "type": "git",
-                "url": "C:/wamp64/www/CorrelationCoefficient",
-                "reference": "8db4ebbe0b723c69e0c11e73fc5d08da068758b4"
+                "url": "https://github.com/kaydansky/correlation-coefficient.git",
+                "reference": "13968165f425cb6e2bbb931992c923d1488148c7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kaydansky/correlation-coefficient/zipball/13968165f425cb6e2bbb931992c923d1488148c7",
+                "reference": "13968165f425cb6e2bbb931992c923d1488148c7",
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.4.0"
@@ -23,6 +29,7 @@
                     "Correlation\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -33,20 +40,30 @@
                 }
             ],
             "description": "A numerical measure of some type of correlation, meaning a statistical relationship between two variables.",
-            "time": "2020-01-20T13:11:30+00:00"
+            "homepage": "https://github.com/kaydansky/correlation-coefficient",
+            "keywords": [
+                "Pearson",
+                "Spearman",
+                "coefficient",
+                "correlation"
+            ],
+            "support": {
+                "issues": "https://github.com/kaydansky/correlation-coefficient/issues",
+                "source": "https://github.com/kaydansky/correlation-coefficient/tree/master"
+            },
+            "time": "2020-01-20T18:09:42+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "kaydansky/correlation-coefficient": 20
-    },
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.4.0",
         "ext-json": "*"
     },
-    "platform-dev": []
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }
