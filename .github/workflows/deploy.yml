@@ -10,14 +10,27 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   deploy:
-    runs-on: ubuntu-latest
     environment:
-      name: ${{ github.ref == 'refs/heads/main' && 'github-pages-main' || 'github-pages-dev' }}
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup base path for dev
+        if: github.ref == 'refs/heads/dev'
+        run: |
+          REPO_NAME="correlation-coefficient-example-php"
+          echo "<base href=\"/${REPO_NAME}/dev/\">" > base.html
+          sed -i '1i<base href="\/'"${REPO_NAME}"'/dev\/">' index.html || true
+          find . -name "*.html" -not -name "index.html" -exec sed -i '1i<base href="\/'"${REPO_NAME}"'/dev\/">' {} \; || true
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -27,6 +40,6 @@ jobs:
         with:
           path: './'
 
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
