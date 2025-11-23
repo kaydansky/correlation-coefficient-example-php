@@ -1,16 +1,24 @@
-name: Deploy to GitHub Pages + Build vendor
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
-  build-and-deploy:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,11 +26,10 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
-          coverage: none
+          php-version: '8.3'
 
-      - name: Install Composer dependencies
-        run: composer install --no-progress --no-dev --prefer-dist --optimize-autoloader
+      - name: Composer install
+        run: composer install --no-progress --no-dev --optimize-autoloader
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -30,7 +37,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './'
+          path: .
 
       - name: Deploy
+        id: deployment
         uses: actions/deploy-pages@v4
